@@ -14,8 +14,16 @@ const getPost = async (req, res) => {
 }
 
 const createPost = (req, res) => {
+    const post  = req.body ; 
+    const newPost = new postModel(post); 
+    try {
+        await newPost.save() ; 
 
-    res.send('I am in create  post routes ')
+        
+    } catch (error) {
+        
+        
+    }
 
 }
 
