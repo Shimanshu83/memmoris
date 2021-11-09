@@ -3,26 +3,30 @@ const postModel = require('../models/postModel');
 const getPost = async (req, res) => {
 
     try {
-        let postMessages = await postModel.find() ;
-        return res.status(200).json(postMessages) ;  
+        const post = await postModel.find({});
+        return res.json({data : post})
     }
     catch (err) {
         res.status(500).json(err)
-
     }
+
 
 }
 
-const createPost = (req, res) => {
-    const post  = req.body ; 
-    const newPost = new postModel(post); 
+const createPost = async (req, res) => {
+    const { title , message , creator , tags , selectedFile} = req.body;   
     try {
-        await newPost.save() ; 
-
-        
-    } catch (error) {
-        
-        
+        const post = await postModel.create({
+            title,
+            message,
+            creator,
+            tags,
+            selectedFile
+        });
+        return res.json({data : post})
+    }
+    catch (err) {
+        res.status(500).json(err)
     }
 
 }

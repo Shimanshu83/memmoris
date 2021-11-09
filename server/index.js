@@ -5,9 +5,9 @@ const postRoute = require("./routes/posts");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json({limit : "30mb", extended : true}));
 app.use(express.urlencoded({limit : "30mb", extended : true}));
-app.use(cors());
 
 // connecting database 
 const connectDB = require('./config/connection'); 
@@ -19,4 +19,4 @@ app.use('/' , (req , res ,next) => {
 })
 
 
-app.listen(3030); 
+app.listen(5000); 
